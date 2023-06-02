@@ -13,8 +13,8 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "structinspector.helloWorld",
-      "title": "Hello World"
+      "command": "structinspector.ShowInformationWindow",
+      "title": "StructInspector: Information Window"
     }]
   },
   "scripts": {
