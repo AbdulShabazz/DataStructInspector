@@ -1,8 +1,10 @@
 # structinspector README
 
-This is the README for your extension "structinspector". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "structinspector". "structinspector" is a Visual Studio Code extension that allows you to inspect the structure of a C/C++ struct in the form of a JSON file.
 
 ## Features
+
+To designate a struct to be inspected, select the '+' symbol beside the struct, and supply default values to initialize it. The extension will then generate an object that represents the struct's name, and members, with default values. Any and all changes made to the struct as you progress throuhg the code will be reflected when you hover over the struct.
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
