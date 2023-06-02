@@ -4,7 +4,7 @@ This is the README for your extension "structinspector". "structinspector" is a 
 
 ## Features
 
-To designate a struct to be inspected, select the '+' symbol beside the struct, and supply default values to initialize it. The extension will then generate an object that represents the struct's name, and members, with default values. Any and all changes made to the struct as you progress throuhg the code will be reflected when you hover over the struct.
+To designate a struct to be inspected, select the '+' symbol beside the struct, and supply default values to initialize it. The extension will then generate an object that represents the struct's name, and members, with its default parameters. Any and all changes made will be reflected when you hover over the object as you progress through your code.
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
