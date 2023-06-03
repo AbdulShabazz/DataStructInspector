@@ -4,7 +4,18 @@ This is the README for your extension "structinspector". "structinspector" is a 
 
 ## Features
 
-To designate a struct to be inspected, use line comments within the struct, and supply default values to each property or attribute. The extension will then track any and all changes made to the struct which will be reflected when you hover over the object as you progress through your code.
+To designate a struct to be inspected, use compact line comments to supply default values to each property or attribute:
+
+```cpp
+struct A {
+	int a; // test case: 5
+	std::vector<std::string> b{}; // {"1", "2", "3"}
+};
+```
+
+The extension will then track any and all changes made to the struct, which will be reflected when you hover over it as you progress through your code.
+
+If you want to track a struct that is defined in a different file, you can use the `#include <filename>` directive or the `import [module.name]` to include the file or module name in your workspace.
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
