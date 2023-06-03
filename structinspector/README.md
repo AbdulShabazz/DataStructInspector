@@ -4,7 +4,7 @@ This is the README for your extension "structinspector". "structinspector" is a 
 
 ## Features
 
-To designate a struct to be inspected, use compact line comments to supply default values to each property or attribute:
+To designate a struct to be inspected, use compact line comments which supply default values to each property and or attribute:
 
 ```cpp
 struct A {
