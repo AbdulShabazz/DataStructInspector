@@ -4,7 +4,7 @@ This is the README for your extension "structinspector". "structinspector" is a 
 
 ## Features
 
-To designate a struct to be inspected, select the '+' symbol beside the struct, and supply default values to initialize it. The extension will then generate an object that represents the struct's name, and members, with its default parameters. Any and all changes made will be reflected when you hover over the information symbol 'i' beside the object as you progress through your code.
+To designate a struct to be inspected, use line comments within the struct, and supply default values to each property or attribute. The extension will then track any and all changes made to the struct which will be reflected when you hover over the object as you progress through your code.
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
@@ -37,17 +37,17 @@ Calling out known issues can help limit users opening duplicate issues against y
 
 Users appreciate release notes as you update your extension.
 
-### 1.0.0
+### 1.1.0
 
-Initial release of ...
+Added features X, Y, and Z.
 
 ### 1.0.1
 
 Fixed issue #.
 
-### 1.1.0
+### 1.0.0
 
-Added features X, Y, and Z.
+Initial release of ...
 
 ---
 
