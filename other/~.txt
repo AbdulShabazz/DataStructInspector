@@ -1,0 +1,119 @@
+
+markdown.appendMarkdown('Memory Map in 1 Byte Blocks:\n \
+<span style="background-color:lightblue; padding: 1px;">This text has a light blue background color.</span>');
+return new vscode.Hover(markdown);
+
+markdown.appendCodeblock('``` ```html\nMemory Map in 1 Byte Blocks:\n<span style="background-color:lightblue; padding: 1px;">This text has a light blue background color.</span>```');
+return new vscode.Hover(markdown);
+
+markdown.appendMarkdown('<span style="color:blue">This text has a light blue background color.</span>');
+return new vscode.Hover(markdown);
+
+markdown.appendMarkdown('## Working with Markdown \n\
+\
+You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts: \n\
+\
+* Split the editor (`Cmd+\\` on macOS or `Ctrl+\\` on Windows and Linux) \n\
+* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux) \n\
+* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets \n\
+\
+## For more information \n\
+\
+* [Visual Studio Code\'s Markdown Support](http://code.visualstudio.com/docs/languages/markdown) \n\
+* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/) \n\
+\
+**Enjoy!**');
+
+markdown.appendMarkdown('Memory Map in 1 Byte Blocks:```html<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg"> \
+<rect x="1" y="1" width="8" height="8" fill="transparent" stroke="black" stroke-width="1" /> </svg>```');
+
+markdown.appendMarkdown('Memory Map in 1 Byte Blocks:```cpp \n\
+<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg"> \n\
+<rect x="1" y="1" width="8" height="8" fill="transparent" stroke="black" stroke-width="1" /> \n\
+</svg>```');
+
+const { TextDocuments, createConnection, ProposedFeatures } = require('vscode-languageserver');
+
+// Create a connection for the server, using Node's IPC as a transport.
+let connection = createConnection(ProposedFeatures.all);
+
+// Create a simple text document manager.
+let documents = new TextDocuments();
+
+documents.onDidOpen((event) => {
+    connection.console.log(`[Server (node)] Document opened: ${event.document.uri}`);
+});
+
+documents.onDidChangeContent((change) => {
+	change;
+    connection.console.log(`[Server (node)] Document content changed: ${event.document.uri}`);
+});
+
+documents.onDidClose((event) => {
+    connection.console.log(`[Server (node)] Document closed: ${event.document.uri}`);
+});
+
+// Make the text document manager listen on the connection
+// for open, change and close text document events
+documents.listen(connection);
+
+connection.onInitialize((params) => {
+    return {
+        capabilities: {
+            textDocumentSync: documents.syncKind
+        }
+    };
+});
+
+// Listen on the connection
+connection.listen();
+
+markdown.appendCodeblock('Memory Map in 1 Byte x 8 Byte Blocks:  ', language);
+markdown.appendCodeblock('Rating: Excellent  ', language);
+markdown.appendCodeblock('+-----------------------------------------+  ', language);
+markdown.appendCodeblock('|                  stack                  |  ', language);
+markdown.appendCodeblock('|char(1) + short(2) + int(4) + unused(1); |  ', language);
+markdown.appendCodeblock('|double(8) + unused(0);                   |  ', language);
+markdown.appendCodeblock('+-----------------------------------------+  ', language);
+
+`
+//Q:How can I clarify this memory map layout diagram of a struct declared in C++?
+Memory Layout (in bytes):
+Rating: Excellent
++-----------------------------------------+
+|                  stack                  |
+|char(1) + short(2) + int(4) + unused(1); |
+|double(8) + unused(0);                   |
++-----------------------------------------+
+`
+
+Memory Layout (in bytes):
+
+0       1       2       3       4       5       6       7       8
+|-------|-------|-------|-------|-------|-------|-------|-------|
+|   c   |   s   |   s   |   i   |   i   |   i   |   i   |unused |
+|-------|-------|-------|-------|-------|-------|-------|-------|
+|   d   |   d   |   d   |   d   |   d   |   d   |   d   |   d   |
+|-------|-------|-------|-------|-------|-------|-------|-------|
+
+c - char (1 byte)
+s - short (2 bytes)
+i - int (4 bytes)
+d - double (8 bytes)
+unused - padding (1 byte)
+
+
+Memory Layout (in bytes):
+Rating: Excellent
+0       1       2       3       4       5       6       7         8
+|-------|-------|-------|-------|-------|-------|-------|---------|
+|char(1)|    short(2)   |            int(4)             |unused(1)|
+|-------|-------|-------|-------|-------|-------|-------|---------|
+|                            double(8)							  |
+|-------|-------|-------|-------|-------|-------|-------|---------|
+
+c - char (1 byte)
+s - short (2 bytes)
+i - int (4 bytes)
+d - double (8 bytes)
+unused - padding (1 byte)
