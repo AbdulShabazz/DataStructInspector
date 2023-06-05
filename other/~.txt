@@ -44,8 +44,7 @@ documents.onDidOpen((event) => {
     connection.console.log(`[Server (node)] Document opened: ${event.document.uri}`);
 });
 
-documents.onDidChangeContent((change) => {
-	change;
+documents.onDidChangeContent((event) => {
     connection.console.log(`[Server (node)] Document content changed: ${event.document.uri}`);
 });
 
@@ -58,6 +57,7 @@ documents.onDidClose((event) => {
 documents.listen(connection);
 
 connection.onInitialize((params) => {
+	params;
     return {
         capabilities: {
             textDocumentSync: documents.syncKind
@@ -67,6 +67,8 @@ connection.onInitialize((params) => {
 
 // Listen on the connection
 connection.listen();
+
+//
 
 markdown.appendCodeblock('Memory Map in 1 Byte x 8 Byte Blocks:  ', language);
 markdown.appendCodeblock('Rating: Excellent  ', language);
@@ -117,3 +119,5 @@ s - short (2 bytes)
 i - int (4 bytes)
 d - double (8 bytes)
 unused - padding (1 byte)
+
+StructInspector is a visual studio code extension that strives to promote the "compilation equals verification" paradigm.
