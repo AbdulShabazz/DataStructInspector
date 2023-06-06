@@ -1,4 +1,98 @@
 
+//
+	"activationEvents": [
+		"onLanguage:c",
+		"onLanguage:cpp",
+		"onLanguage:javascript",
+		"onLanguage:python",
+		"onLanguage:rust",
+		"onLanguage:typescript"
+	],
+//
+
+let UpdateMemoryAlignmentSettings = vscode.commands.registerCommand('extension.showMemoryLayout', function () {
+    // Your logic here to show the memory layout.
+});
+
+// Add the command to the list of disposables which are disposed when this extension is deactivated.
+context.subscriptions.push(UpdateMemoryAlignmentSettings);	
+
+//
+
+const vscode = require('vscode');
+
+function activate(context) {
+    if(vscode.window.activeTextEditor) {
+        handleActiveEditor(vscode.window.activeTextEditor.document);
+    }
+
+    vscode.window.onDidChangeActiveTextEditor(editor => {
+        if(editor) {
+            handleActiveEditor(editor.document);
+        }
+    }, null, context.subscriptions);
+
+    vscode.workspace.onDidOpenTextDocument(handleActiveEditor, null, context.subscriptions);
+}
+
+function handleActiveEditor(document) {
+    if (document.languageId === 'cpp') {
+        console.log('C++ file opened');
+        // Your logic to handle C++ file goes here
+    }
+}
+
+exports.activate = activate;
+
+//
+
+Q:How do I register a uri for onUri?
+ChatGPT:
+
+To handle onUri activation events, you need to define a scheme for your URIs and implement a UriHandler in your extension.
+
+First, define the scheme in the package.json of your extension:
+
+json
+
+"contributes": {
+    "uriHandler": {
+        "protocol": "myprotocol"
+    }
+}
+
+In this example, myprotocol is the scheme you defined. Your extension will handle URIs that start with myprotocol://.
+
+Then, in your extension's entry point file (often extension.js or extension.ts), you need to implement a UriHandler:
+
+javascript
+
+const uriHandler = {
+    handleUri(uri) {
+        // Handle the incoming URI here.
+        console.log(uri.toString());
+    }
+};
+
+vscode.window.registerUriHandler(uriHandler);
+
+In this example, when a URI that starts with myprotocol:// is opened, the handleUri method will be called, and the URI will be printed to the console.
+
+The onUri activation event is triggered when a URI handled by your extension is opened. You need to register the URI scheme in your package.json, and then handle URIs with that scheme in your extension's code.
+
+Please note that VS Code must be the default handler for your custom URI scheme on the user's system. This usually involves operating system-level changes, and it's not something your extension can control. Your users will need to manually set VS Code as the default handler for your custom URI scheme.
+
+For more information, refer to the VS Code extension URI handling documentation.
+
+//
+
+process.arch; 	// possible values: 'arm', 'arm64', 'ia32', 'mips', 'mipsel', 'ppc', 'ppc64', 's390', 's390x', 'x32', and 'x64'
+// 16-bit: ia32, x32
+// 32-bit: arm, mips, mipsel, ppc, s390, x32
+// 64-bit: arm64, ppc64, s390x, x64
+
+//
+
 markdown.appendMarkdown('Memory Map in 1 Byte Blocks:\n \
 <span style="background-color:lightblue; padding: 1px;">This text has a light blue background color.</span>');
 return new vscode.Hover(markdown);
@@ -121,3 +215,68 @@ d - double (8 bytes)
 unused - padding (1 byte)
 
 StructInspector is a visual studio code extension that strives to promote the "compilation equals verification" paradigm.
+
+//
+
+const { TextDocuments, createConnection, ProposedFeatures } = require('vscode-languageserver');
+
+// Create a connection for the server, using Node's IPC as a transport.
+let connection = createConnection(ProposedFeatures.all);
+
+// Create a simple text document manager.
+let documents = new TextDocuments();
+
+documents.onDidOpen((event) => {
+    connection.console.log(`[Server (node)] Document opened: ${event.document.uri}`);
+});
+
+documents.onDidChangeContent((event) => {
+    connection.console.log(`[Server (node)] Document content changed: ${event.document.uri}`);
+});
+
+documents.onDidClose((event) => {
+    connection.console.log(`[Server (node)] Document closed: ${event.document.uri}`);
+});
+
+// Make the text document manager listen on the connection
+// for open, change and close text document events
+documents.listen(connection);
+
+connection.onInitialize((params) => {
+	params;
+    return {
+        capabilities: {
+            textDocumentSync: documents.syncKind
+        }
+    };
+});
+
+// Listen on the connection
+connection.listen();
+
+//
+
+let FirstViewFlag = true;
+
+// Set the flag to false so that the memory layout is only displayed once
+FirstViewFlag = false;
+
+//
+
+// Add the memory layout to the markdown string
+if (FirstViewFlag) {
+    markdown.appendCodeblock('Memory Layout (in bytes):', language);
+    markdown.appendCodeblock('Rating: Excellent', language);
+    markdown.appendCodeblock('0       1       2       3       4       5       6       7         8', language);
+    markdown.appendCodeblock('|-------|-------|-------|-------|-------|-------|-------|---------|', language);
+    markdown.appendCodeblock('|char(1)|    short(2)   |            int(4)             |unused(1)|', language);
+    markdown.appendCodeblock('|-------|-------|-------|-------|-------|-------|-------|---------|', language);
+    markdown.appendCodeblock('|                            double(8)                            |', language);
+    markdown.appendCodeblock('|-------|-------|-------|-------|-------|-------|-------|---------|', language);
+    markdown.appendCodeblock('\n', language);
+    markdown.appendCodeblock('c - char (1 byte)', language);
+    markdown.appendCodeblock('s - short (2 bytes)', language);
+    markdown.appendCodeblock('i - int (4 bytes)', language);
+    markdown.appendCodeblock('d - double (8 bytes)', language);
+    markdown.appendCodeblock('unused - padding (1 byte)', language);
+}
