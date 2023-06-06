@@ -8,6 +8,9 @@ ProposedFeatures;
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 
+//const CPP_Memory_Model = require('.\memory_model.json');
+//CPP_Memory_Model;
+
 const vscode = require('vscode');
 
 // This method is called when your extension is activated
@@ -25,12 +28,47 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-	let ShowInformationWindow = vscode.commands.registerCommand('structinspector.ShowInformationWindow', function () {
+	let ShowInformationWindow = vscode.commands.registerCommand('extension.ShowInformationWindow', function () {
 		// The code you place here will be executed every time your command is executed
+		let alignmentScheme = vscode.workspace.getConfiguration('memory_alignment').get('settings');
+		alignmentScheme;
+		// Display a message box to the user
+		vscode.window.showInformationMessage('StructInspector Configuration Settings are now available!');
+		console.log('StructInspector current settings: Memory Alignment - ${alignmentScheme}');
+	});
+
+	// Add the command to the list of disposables which are disposed when this extension is deactivated.
+	context.subscriptions.push(ShowInformationWindow);
+
+	let Enable16BitAlign = vscode.commands.registerCommand('extension.Enable16BitAlignment', function () {
+		// Your logic here to show the memory layout.
 
 		// Display a message box to the user
-		vscode.window.showInformationMessage('StructInspector is now activated!');
+		vscode.window.showInformationMessage('StructInspector is now using 16-bit memory algnment!');
 	});
+
+	// Add the command to the list of disposables which are disposed when this extension is deactivated.
+	context.subscriptions.push(Enable16BitAlign);
+
+	let Enable32BitAlign = vscode.commands.registerCommand('extension.Enable32BitAlignment', function () {
+		// Your logic here to show the memory layout.
+
+		// Display a message box to the user
+		vscode.window.showInformationMessage('StructInspector is now using 32-bit memory algnment!');
+	});
+
+	// Add the command to the list of disposables which are disposed when this extension is deactivated.
+	context.subscriptions.push(Enable32BitAlign);
+
+	let Enable64BitAlign = vscode.commands.registerCommand('extension.Enable64BitAlignment', function () {
+		// Your logic here to show the memory layout.
+
+		// Display a message box to the user
+		vscode.window.showInformationMessage('StructInspector is now using 64-bit memory algnment!');
+	});
+
+	// Add the command to the list of disposables which are disposed when this extension is deactivated.
+	context.subscriptions.push(Enable64BitAlign);
 
 	/**
 		NOTE: There are two ways to access the current document via the vscode APIs:
@@ -57,9 +95,6 @@ function activate(context) {
 			where N is the number of bytes required in the struct,
 			and M is the actual number of bytes reserved in the memory map.
 	*/
-
-	// Add the command to the list of disposables which are disposed when this extension is deactivated.
-	context.subscriptions.push(ShowInformationWindow);
 
 	// List of languages we want to support
 	const languages = ['c', 'cpp','csharp', 'javascript','lua','python', 'typescript','vb', 'rust'];
@@ -99,8 +134,10 @@ function activate(context) {
 						case 'vb':
 							CodeBlock = 'Public Class MyStruct\n\tpublic key As Integer\n\tpublic value As Char\nEnd Class';
 							break;
-					}
+					} // End switch
+					// Add the code block to the markdown string
 					markdown.appendCodeblock(CodeBlock, language);
+					// Add the memory layout to the markdown string
 					markdown.appendCodeblock('Memory Layout (in bytes):', language);
 					markdown.appendCodeblock('Rating: Excellent', language);
 					markdown.appendCodeblock('0       1       2       3       4       5       6       7         8', language);
@@ -115,15 +152,16 @@ function activate(context) {
 					markdown.appendCodeblock('i - int (4 bytes)', language);
 					markdown.appendCodeblock('d - double (8 bytes)', language);
 					markdown.appendCodeblock('unused - padding (1 byte)', language);
+					// Return the markdown string
 					return new vscode.Hover(markdown);
-				}
-			}
-		});
+				} // End of if (word === 'StructInspector')
+			} // End of provideHover
+		}); // End of registerHoverProviderLanguage
 
 		// Add the command to the list of disposables which are disposed when this extension is deactivated.
 		context.subscriptions.push(registerHoverProviderLanguage);
-	}
-}
+	} // End of for (const language of languages)
+} // End of activate
 
 // This method is called when your extension is deactivated
 function deactivate() {	
