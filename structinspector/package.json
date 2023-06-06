@@ -33,10 +33,6 @@
 				"title": "StructInspector: Information Window"
 			},
 			{
-				"command": "extension.Enable16BitAlignment",
-				"title": "StructInspector: Enable 16-Bit memory alignment"
-			},
-			{
 				"command": "extension.Enable32BitAlignment",
 				"title": "StructInspector: Enable 32-Bit memory alignment"
 			},
@@ -52,7 +48,208 @@
 					"type": "string",
 					"default": "64-bit",
 					"enum": ["16-bit", "32-bit", "64-bit"],
-					"description": "Choose your memory alignment scheme."
+					"description": "Choose your memory alignment scheme.",
+					"Memory_BoilerPlate":"Memory Layout (in bytes):", 
+					"Memory_Rating_BoilerPlate":"Rating: ",
+					"Memory_Rating":["Excellent","Average"],
+					"Memory_Layout":"0       1       2       3       4       5       6       7       8", 
+					"Memory_Layout_BarGraph":"|-------|-------|-------|-------|-------|-------|-------|-------|",
+					"Memory_Layout_BarStop":"|",
+					"unused":{
+						"num_bytes":8,
+						"memory_footprint_top":"-------|",
+						"memory_footprint_top_no_barstop":"-------",
+						"memory_footprint":"^unused(#)$|",
+						"memory_footprint_bottom":"-------|",
+						"memory_footprint_bottom_no_barstop":"-------",
+						"Memory_footprint_BarStop":"|",
+						"lpad":"",
+						"rpad":""
+					}
+				},
+				"platform_64bit":{
+					"data_type":{
+						"bool":{
+							"num_bytes":1,
+							"memory_footprint_top":"-------|",
+							"memory_footprint":"^bool(1)$|",
+							"memory_footprint_bottom":"-------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"char":{
+							"num_bytes":1,
+							"memory_footprint_top":"-------|",
+							"memory_footprint":"^char(1)$|",
+							"memory_footprint_bottom":"-------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"int":{
+							"num_bytes":4,
+							"memory_footprint_top":"------------|",
+							"memory_footprint":"^int(4)$|",
+							"memory_footprint_bottom":"------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"float":{
+							"num_bytes":4,
+							"memory_footprint_top":"------------|",
+							"memory_footprint":"^float(4)$|",
+							"memory_footprint_bottom":"------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"double":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^double(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long long":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long long(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"short":{
+							"num_bytes":2,
+							"memory_footprint_top":"----|",
+							"memory_footprint":"^short(2)$|",
+							"memory_footprint_bottom":"----|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long double":{
+							"num_bytes":16,
+							"memory_footprint_top":"------------------------|",
+							"memory_footprint":"^long double(16)$|",
+							"memory_footprint_bottom":"------------------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long int":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long int(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long long int":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long long int(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						}
+					}
+				},
+				"platform_32bit":{
+					"data_type":{
+						"bool":{
+							"num_bytes":1,
+							"memory_footprint_top":"-------|",
+							"memory_footprint":"^bool(1)$|",
+							"memory_footprint_bottom":"-------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"char":{
+							"num_bytes":1,
+							"memory_footprint_top":"-------|",
+							"memory_footprint":"^char(1)$|",
+							"memory_footprint_bottom":"-------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"int":{
+							"num_bytes":4,
+							"memory_footprint_top":"------------|",
+							"memory_footprint":"^int(4)$|",
+							"memory_footprint_bottom":"------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"float":{
+							"num_bytes":4,
+							"memory_footprint_top":"------------|",
+							"memory_footprint":"^float(4)$|",
+							"memory_footprint_bottom":"------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"double":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^double(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long":{
+							"num_bytes":4,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long(4)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long long":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long long(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"short":{
+							"num_bytes":2,
+							"memory_footprint_top":"----|",
+							"memory_footprint":"^short(2)$|",
+							"memory_footprint_bottom":"----|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long double":{
+							"num_bytes":16,
+							"memory_footprint_top":"------------------------|",
+							"memory_footprint":"^long double(16)$|",
+							"memory_footprint_bottom":"------------------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long int":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long int(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						},
+						"long long int":{
+							"num_bytes":8,
+							"memory_footprint_top":"----------------|",
+							"memory_footprint":"^long long int(8)$|",
+							"memory_footprint_bottom":"----------------|",
+							"lpad":"",
+							"rpad":""
+						}
+					}
 				}
 			}
 		}
