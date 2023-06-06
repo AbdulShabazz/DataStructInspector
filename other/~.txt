@@ -1,3 +1,21 @@
+
+
+let Enable16BitAlign = vscode.commands.registerCommand('extension.Enable16BitAlignment', function () {
+    // Your logic here to show the memory layout.
+
+    // Display a message box to the user
+    vscode.window.showInformationMessage('StructInspector is now using 16-bit memory algnment!');
+});
+
+// Add the command to the list of disposables which are disposed when this extension is deactivated.
+context.subscriptions.push(Enable16BitAlign);
+
+//
+{
+    "command": "extension.Enable16BitAlignment",
+    "title": "StructInspector: Enable 16-Bit memory alignment"
+},
+
 //
 ,
 	"dependencies": {
