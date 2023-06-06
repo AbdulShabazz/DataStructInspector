@@ -33,22 +33,12 @@ function activate(context) {
 		let alignmentScheme = vscode.workspace.getConfiguration('memory_alignment').get('settings');
 		alignmentScheme;
 		// Display a message box to the user
-		vscode.window.showInformationMessage('StructInspector Configuration Settings are now available!');
-		console.log('StructInspector current settings: Memory Alignment - ${alignmentScheme}');
+		vscode.window.showInformationMessage(`StructInspector current settings: Memory Alignment - ${alignmentScheme}`);
+		console.log(`StructInspector settings: Memory Alignment - ${alignmentScheme}`);
 	});
 
 	// Add the command to the list of disposables which are disposed when this extension is deactivated.
 	context.subscriptions.push(ShowInformationWindow);
-
-	let Enable16BitAlign = vscode.commands.registerCommand('extension.Enable16BitAlignment', function () {
-		// Your logic here to show the memory layout.
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('StructInspector is now using 16-bit memory algnment!');
-	});
-
-	// Add the command to the list of disposables which are disposed when this extension is deactivated.
-	context.subscriptions.push(Enable16BitAlign);
 
 	let Enable32BitAlign = vscode.commands.registerCommand('extension.Enable32BitAlignment', function () {
 		// Your logic here to show the memory layout.
