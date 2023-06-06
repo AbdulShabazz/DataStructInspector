@@ -8,8 +8,7 @@ ProposedFeatures;
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 
-//const CPP_Memory_Model = require('.\memory_model.json');
-//CPP_Memory_Model;
+//let CPP_Memory_Model = "64-bit";
 
 const vscode = require('vscode');
 
@@ -31,7 +30,6 @@ function activate(context) {
 	let ShowInformationWindow = vscode.commands.registerCommand('extension.ShowInformationWindow', function () {
 		// The code you place here will be executed every time your command is executed
 		let alignmentScheme = vscode.workspace.getConfiguration('memory_alignment').get('settings');
-		alignmentScheme;
 		// Display a message box to the user
 		vscode.window.showInformationMessage(`StructInspector current settings: Memory Alignment - ${alignmentScheme}`);
 		console.log(`StructInspector settings: Memory Alignment - ${alignmentScheme}`);
@@ -42,9 +40,9 @@ function activate(context) {
 
 	let Enable32BitAlign = vscode.commands.registerCommand('extension.Enable32BitAlignment', function () {
 		// Your logic here to show the memory layout.
-
+		//CPP_Memory_Model = vscode.workspace.getConfiguration('memory_alignment').get('settings').alignment[1];
 		// Display a message box to the user
-		vscode.window.showInformationMessage('StructInspector is now using 32-bit memory algnment!');
+		vscode.window.showInformationMessage('StructInspector is now using 32-bit memory alignment!');
 	});
 
 	// Add the command to the list of disposables which are disposed when this extension is deactivated.
@@ -52,9 +50,9 @@ function activate(context) {
 
 	let Enable64BitAlign = vscode.commands.registerCommand('extension.Enable64BitAlignment', function () {
 		// Your logic here to show the memory layout.
-
+		//CPP_Memory_Model = vscode.workspace.getConfiguration('memory_alignment').get('settings').alignment[0];
 		// Display a message box to the user
-		vscode.window.showInformationMessage('StructInspector is now using 64-bit memory algnment!');
+		vscode.window.showInformationMessage('StructInspector is now using 64-bit memory alignment!');
 	});
 
 	// Add the command to the list of disposables which are disposed when this extension is deactivated.
