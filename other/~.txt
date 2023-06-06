@@ -1,4 +1,8 @@
-
+//
+,
+	"dependencies": {
+		"vscode-languageserver": "^8.1.0"
+	}
 //
 	"activationEvents": [
 		"onLanguage:c",
