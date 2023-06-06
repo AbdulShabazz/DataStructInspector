@@ -47,7 +47,7 @@
 				"memory_alignment.settings": {
 					"type": "string",
 					"default": "64-bit",
-					"enum": ["16-bit", "32-bit", "64-bit"],
+					"alignment": ["64-bit", "32-bit"],
 					"description": "Choose your memory alignment scheme.",
 					"Memory_BoilerPlate":"Memory Layout (in bytes):", 
 					"Memory_Rating_BoilerPlate":"Rating: ",
