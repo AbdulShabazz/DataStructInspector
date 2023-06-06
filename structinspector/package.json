@@ -17,13 +17,45 @@
 	"categories": [
 		"Other"
 	],
-	"activationEvents": [],
-	"main": "./extension.js",
+	"activationEvents": [
+		"onLanguage:c",
+		"onLanguage:cpp",
+		"onLanguage:javascript",
+		"onLanguage:python",
+		"onLanguage:rust",
+		"onLanguage:typescript"
+	],
+	"main": "extension.js",
 	"contributes": {
-		"commands": [{
-			"command": "structinspector.ShowInformationWindow",
-			"title": "StructInspector: Information Window"
-		}]
+		"commands": [
+			{
+				"command": "extension.ShowInformationWindow",
+				"title": "StructInspector: Information Window"
+			},
+			{
+				"command": "extension.Enable16BitAlignment",
+				"title": "StructInspector: Enable 16-Bit memory alignment"
+			},
+			{
+				"command": "extension.Enable32BitAlignment",
+				"title": "StructInspector: Enable 32-Bit memory alignment"
+			},
+			{
+				"command": "extension.Enable64BitAlignment",
+				"title": "StructInspector: Enable 64-Bit memory alignment"
+			}
+		],
+		"configuration": {
+			"title": "Memory Alignment Scheme",
+			"properties": {
+				"memory_alignment.settings": {
+					"type": "string",
+					"default": "64-bit",
+					"enum": ["16-bit", "32-bit", "64-bit"],
+					"description": "Choose your memory alignment scheme."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
@@ -31,14 +63,14 @@
 		"test": "node ./test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/vscode": "^1.78.0",
 		"@types/glob": "^8.1.0",
 		"@types/mocha": "^10.0.1",
 		"@types/node": "16.x",
+		"@types/vscode": "^1.78.0",
+		"@vscode/test-electron": "^2.3.0",
 		"eslint": "^8.39.0",
 		"glob": "^8.1.0",
 		"mocha": "^10.2.0",
-		"typescript": "^5.0.4",
-		"@vscode/test-electron": "^2.3.0"
+		"typescript": "^5.0.4"
 	}
 }
