@@ -101,6 +101,60 @@ function activate(context) {
 			provideHover(document, position, token) {
 				token;
 				const word = document.getText(document.getWordRangeAtPosition(position));
+				// This is a mock syntax tree for a C++ struct
+				const mockTree = {
+					name: 'MyStruct',
+					type: 'struct',
+					members: [
+					{ type: 'int', name: 'a' },
+					{ type: 'char', name: 'b' },
+					{ type: 'double', name: 'c' },
+					{ type: 'bool', name: 'd' },
+					{ type: 'long', name: 'e' },
+					],
+				};
+				
+				// This is a mock function that just returns the above tree
+				function getDeclarationUnderCursor(document, position) {
+					return mockTree;
+				}
+				
+				// Here's how you might implement calculateMemoryLayout:
+				function calculateMemoryLayout(decl, alignment) {
+					// This should be the parsed JSON provided in your question
+					const config = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+					const platformConfig = config.platform_64bit;
+				
+					let layout = `${config.Memory_BoilerPlate}\n`;
+					let totalSize = 0;
+				
+					for (const member of decl.members) {
+					const memberConfig = platformConfig.data_type[member.type];
+				
+					layout += memberConfig.memory_footprint_top + '\n';
+					layout += memberConfig.memory_footprint.replace('$', member.name) + '\n';
+					layout += memberConfig.memory_footprint_bottom + '\n';
+				
+					totalSize += memberConfig.num_bytes;
+					}
+				
+					// Append unused bytes to reach the next 64-bit boundary if necessary
+					if (totalSize % 8 !== 0) {
+					const unusedBytes = 8 - (totalSize % 8);
+					const unusedConfig = config.unused;
+				
+					layout += unusedConfig.memory_footprint_top.repeat(unusedBytes) + '\n';
+					layout += unusedConfig.memory_footprint.replace('#', unusedBytes).repeat(unusedBytes) + '\n';
+					layout += unusedConfig.memory_footprint_bottom.repeat(unusedBytes) + '\n';
+				
+					totalSize += unusedBytes;
+					}
+				
+					layout += `Total size: ${totalSize} bytes\n`;
+				
+					return layout;
+				}
+  
 				let CodeBlock = '';
 				if (word === 'StructInspector') {
 					let markdown = new vscode.MarkdownString();
