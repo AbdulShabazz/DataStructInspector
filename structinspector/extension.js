@@ -105,9 +105,10 @@ function activate(context) {
 	// Register a hover provider for each language
 	for (const language of languages) {
 		let registerHoverProviderLanguage = vscode.languages.registerHoverProvider(language, {
-			// const alignment = globalState.get('alignment', '64-bit'); // Use '64-bit' as the default
 			provideHover(document, position, token) {
 				token;
+				const alignment = globalState.get('alignment', '64-bit'); // Use '64-bit' as the default
+				const NBitBoundary = (alignment === '64-bit') ? 8 : 4;
 				const word = document.getText(document.getWordRangeAtPosition(position));
 				// This is a mock syntax tree for a C++ struct
 				const mockTree = {
@@ -147,8 +148,8 @@ function activate(context) {
 					}
 				
 					// Append unused bytes to reach the next 64-bit boundary if necessary
-					if (totalSize % 8 !== 0) {
-					const unusedBytes = 8 - (totalSize % 8);
+					if (totalSize % NBitBoundary !== 0) {
+					const unusedBytes = NBitBoundary - (totalSize % NBitBoundary);
 					const unusedConfig = config.unused;
 				
 					layout += unusedConfig.memory_footprint_top.repeat(unusedBytes) + '\n';
