@@ -83,12 +83,20 @@ function activate(context) {
 	*/
 	/**
 	 Todo: Add the following features:
-		Add a '>>' hover provider to provide struct loop iterator outputs for each language
-		Add a '<<' hover provider to provide struct loop iterator outputs for each language
+		+ a '>>' hover provider to provide struct loop iterator outputs for each language
+		+ a '<<' hover provider to provide struct loop iterator outputs for each language
+		+ Inheritance and virtual functions.
+		+ Different kinds of members (static, const, etc).
+		+ Nested classes/structs.
+		+ Different memory alignments (32-bit, 64-bit, etc).
+		+ Platform-specific behavior.
+		+ Many other C/C++ language features.
 
-			There are two (2) memory management ratings: Averegae (N/M > 1) and Excellent (N/M < 1) 
-			where N is the number of bytes required in the struct,
-			and M is the actual number of bytes reserved in the memory map.
+	There are two (2) memory management ratings: Averegae (N/M > 1) and Excellent (N/M < 1) 
+	where N is the number of bytes required in the struct,
+	and M is the actual number of bytes reserved in the memory map.
+	
+	Please note that this is a very simplified version. A real implementation would have to take many more factors into account.
 	*/
 
 	// List of languages we want to support
