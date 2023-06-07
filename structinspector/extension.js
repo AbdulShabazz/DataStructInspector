@@ -24,6 +24,9 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "structinspector" is now activated!');
 
+	// Use the extension's global state, which allows you to store and retrieve information that should persist across Visual Studio Code sessions.
+	let globalState = context.globalState;
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
@@ -39,6 +42,8 @@ function activate(context) {
 	context.subscriptions.push(ShowInformationWindow);
 
 	let Enable32BitAlign = vscode.commands.registerCommand('extension.Enable32BitAlignment', function () {
+		// Update the extension's global state (32-bit alignment)
+		globalState.update('alignment', '32-bit');
 		// Your logic here to show the memory layout.
 		//CPP_Memory_Model = vscode.workspace.getConfiguration('memory_alignment').get('settings').alignment[1];
 		// Display a message box to the user
@@ -49,6 +54,8 @@ function activate(context) {
 	context.subscriptions.push(Enable32BitAlign);
 
 	let Enable64BitAlign = vscode.commands.registerCommand('extension.Enable64BitAlignment', function () {
+		// Update the extension's global state (32-bit alignment)
+		globalState.update('alignment', '64-bit');
 		// Your logic here to show the memory layout.
 		//CPP_Memory_Model = vscode.workspace.getConfiguration('memory_alignment').get('settings').alignment[0];
 		// Display a message box to the user
@@ -90,6 +97,7 @@ function activate(context) {
 	// Register a hover provider for each language
 	for (const language of languages) {
 		let registerHoverProviderLanguage = vscode.languages.registerHoverProvider(language, {
+			// const alignment = globalState.get('alignment', '64-bit'); // Use '64-bit' as the default
 			provideHover(document, position, token) {
 				token;
 				const word = document.getText(document.getWordRangeAtPosition(position));
