@@ -1,5 +1,7 @@
 
 //
+If you want to track a struct that is defined in a different file, you can use the `#include <filename>` directive or the `import [module.name]` to include the file or module name in your workspace.
+//
 
 let Enable32BitAlign = vscode.commands.registerCommand('extension.Enable32BitAlignment', function () {
     // Your logic here to show the memory layout.
