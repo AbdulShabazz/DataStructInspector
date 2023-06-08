@@ -15,7 +15,7 @@ struct A {
 
 The extension will then track any and all changes made to the struct, which will be reflected when you hover over it as you progress through your code.
 
-If you want to track a struct that is defined in a different file, you can use the `#include <filename>` directive or the `import [module.name]` to include the file or module name in your workspace.
+"structinspector" allows you to design around a test case, such that "compilation equals verification"!
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
