@@ -115,11 +115,11 @@ function activate(context) {
 					name: 'MyStruct',
 					type: 'struct',
 					members: [
-					{ type: 'int', name: 'a' },
-					{ type: 'char', name: 'b' },
-					{ type: 'double', name: 'c' },
-					{ type: 'bool', name: 'd' },
-					{ type: 'long', name: 'e' },
+					{ type: 'int', name: 'z' },
+					{ type: 'char', name: 'c' },
+					{ type: 'double', name: 'f' },
+					{ type: 'bool', name: 'b' },
+					{ type: 'long', name: 'u' },
 					],
 				};
 				
@@ -163,7 +163,7 @@ function activate(context) {
 				
 					return layout;
 				}
-  
+
 				let CodeBlock = '';
 				if (word === 'StructInspector') {
 					let markdown = new vscode.MarkdownString();
