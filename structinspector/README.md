@@ -76,6 +76,6 @@ You can author your README using Visual Studio Code.  Here are some useful edito
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 ## Recommendations
-Start with an empty project. This is the easiest way to track changes made to your struct.
+Start with an empty project. This is the easiest way to track changes made to your class or struct.
 
 **Enjoy!**
