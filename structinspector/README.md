@@ -15,7 +15,7 @@ struct A {
 
 The extension will then track any and all changes made to the struct, which will be reflected when you hover over it as you progress through your code.
 
-"structinspector" allows you to design around a test case, such that "compilation equals verification"!
+"structinspector" allows one to design around a test case, thus contributing to the "compilation equals verification" way of programming!
 
 Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
 
@@ -74,5 +74,8 @@ You can author your README using Visual Studio Code.  Here are some useful edito
 
 * [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
 * [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+
+## Recommendations
+Start with an empty project. This is the easiest way to track changes made to your struct.
 
 **Enjoy!**
