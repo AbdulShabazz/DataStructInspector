@@ -147,7 +147,7 @@ function activate(context) {
 					totalSize += memberConfig.num_bytes;
 					}
 				
-					// Append unused bytes to reach the next 64-bit boundary if necessary
+					// Append unused bytes when necessary to reach the next N-bit boundary
 					if (totalSize % NBitBoundary !== 0) {
 					const unusedBytes = NBitBoundary - (totalSize % NBitBoundary);
 					const unusedConfig = config.unused;
